@@ -46,6 +46,9 @@ MatchingBrackets* generateBracketLocations(const char* code, int bracketCount) {
                 push(&bracketStack, ip);
                 break;
             case ']':
+                if (isEmpty(&bracketStack)) {
+                    return NULL;
+                }
                 locations[bracketIndex].bracket = pop(&bracketStack);
                 locations[bracketIndex].matchingBracket = ip;
                 bracketIndex++;
